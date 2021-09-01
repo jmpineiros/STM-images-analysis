@@ -14,11 +14,13 @@ If you use this script for any publication please cite the article published on 
 ________________________________________
 Usage:
 
-Step1. Define crystals parameters in Angstroms, valid kink angle, border and gradient mark
+Step1. Load the 'raw_data_file.txt' file. The file should have the 3D coordinates of the crystal surface and a .txt extension
 
-Step2. Use the square atomic grid available on the repository or create a dataframe with the 2D coordinates of the atomic grid specific to your crystal. Save it on the same folder with a ‘file_name’.p extension and load it.
+Step2. Define crystals parameters in meters, valid kink angle in degrees, border and gradient mark, and temperature in Kelvin 
 
-Step3. Check step height percentage and if it is not around 25% redefine border and gradient mark
+Step3. Use the square atomic grid available on the repository or create a dataframe with the 2D coordinates of the atomic grid specific to your crystal. Save it on the same folder with a ‘file_name’.p extension and load it.
+
+Step4. Check step height percentage and if it is not around 25% redefine border and gradient mark
 ________________________________________
 Important Notes:
 1.	This script runs in the Python3 environment.
