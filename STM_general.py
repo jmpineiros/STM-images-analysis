@@ -45,9 +45,11 @@ unit_cell_a= "unit cell in [m]" #remove the quotation marks (string) before runn
 scale_atom = "interatomic distance in x [m]"  #remove the quotation marks (string) before running the script
 scale_atom_y= "interatomic distance in x [m]"  #remove the quotation marks (string) before running the script
 step_height= "step height in [m]" #remove the quotation marks (string) before running the script
+print(scale_atom, scale_atom_y,step_height)
 
 kink_angle= 'valid kink angle in degrees' #remove the quotation marks before running the script
-print(scale_atom, scale_atom_y,step_height)
+
+temp= 'temperature at which the STM images were taken [K]' #remove quotation marks (string) before running the script
 
 '''load atomic grid'''
 atomic_grid_xy = pickle.load( open( "atomic_grid_file.p", "rb" ) )   #loads atomic grid as data frames
@@ -1507,8 +1509,7 @@ ax39.plot(range(0,21),y0, linestyle="--",marker="o",color='green',markersize=2)
 
 
 boltzman=1.38064852e-23 
-### EDIT THIS PARAMETER ###
-temp= 'temperature at which the STM images were taken [K]' #remove quotation marks (string) before running the script
+
 print(boltzman*temp)
 
 
