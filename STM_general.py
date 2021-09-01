@@ -32,7 +32,7 @@ import pickle #to save and load dataframes
 ### EDIT THESE PARAMETERS ###
 '''load data and define border parameter, unit cell and interatomic distances'''
 plt.close("all")
-data=np.loadtxt("raw_data_file.txt", skiprows=4,dtype=float)
+data=np.loadtxt("raw_data_file.txt", skiprows=4,dtype=float)  #load the raw data file containing the 3D coordinates of the crystal surface as a txt file
 
 
 #border and gradient mark need to be chosen per image, these are test values
@@ -41,15 +41,15 @@ gradient_mark= 1e-12 # test value, usually in the order of 1e-12
 
 
 '''unit_cell_a, scale_atom (x), scale_atom_y, step_height and kink_angle need to be defined per crystal'''
-unit_cell_a= "unit cell in [m]" #remove the quotation marks (string) before running the script
-scale_atom = "interatomic distance in x [m]"  #remove the quotation marks (string) before running the script
-scale_atom_y= "interatomic distance in x [m]"  #remove the quotation marks (string) before running the script
-step_height= "step height in [m]" #remove the quotation marks (string) before running the script
+unit_cell_a= "unit cell in [m]" #the parameter should be a number, remove the quotation marks (string) before running the script
+scale_atom = "interatomic distance in x [m]"  #the parameter should be a number, remove the quotation marks (string) before running the script
+scale_atom_y= "interatomic distance in x [m]"  #the parameter should be a number, remove the quotation marks (string) before running the script
+step_height= "step height in [m]" #the parameter should be a number, remove the quotation marks (string) before running the script
 print(scale_atom, scale_atom_y,step_height)
 
-kink_angle= 'valid kink angle in degrees' #remove the quotation marks before running the script
+kink_angle= 'valid kink angle in degrees' #the parameter should be a number, remove the quotation marks before running the script
 
-temp= 'temperature at which the STM images were taken [K]' #remove quotation marks (string) before running the script
+temp= 'temperature at which the STM images were taken [K]' #the parameter should be a number, remove quotation marks (string) before running the script
 
 '''load atomic grid'''
 atomic_grid_xy = pickle.load( open( "atomic_grid_file.p", "rb" ) )   #loads atomic grid as data frames
