@@ -29,19 +29,22 @@ import ctypes
 import pickle #to save and load dataframes
 #%%
 
+### EDIT THESE PARAMETERS ###
 '''load data and define border parameter, unit cell and interatomic distances'''
 plt.close("all")
 data=np.loadtxt("raw_data_file.txt", skiprows=4,dtype=float)
 
-#border and gradient mark need to be chosen per image, these are starting values for this particular image
-border = "usually in the order of 1e-14" # test value (1e-14)
-gradient_mark= "usually in the order of 1e-12" # test value (1e-12)
 
-'''unit_cell_a, scale_atom (x), scale_atom_y and step_height need to be defined per crystal'''
-unit_cell_a= "unit cell in [A]" #remove the quotation marks before running the script
-scale_atom = "interatomic distance in x [A]"  #remove the quotation marks before running the script
-scale_atom_y= "interatomic distance in x [A]"  #remove the quotation marks before running the script
-step_height= "step height in [A]" #remove the quotation marks before running the script
+#border and gradient mark need to be chosen per image, these are test values
+border = 1e-14 # test value, usually in the order of 1e-14
+gradient_mark= 1e-12 # test value, usually in the order of 1e-12
+
+
+'''unit_cell_a, scale_atom (x), scale_atom_y, step_height and kink_angle need to be defined per crystal'''
+unit_cell_a= "unit cell in [m]" #remove the quotation marks (string) before running the script
+scale_atom = "interatomic distance in x [m]"  #remove the quotation marks (string) before running the script
+scale_atom_y= "interatomic distance in x [m]"  #remove the quotation marks (string) before running the script
+step_height= "step height in [m]" #remove the quotation marks (string) before running the script
 
 kink_angle= 'valid kink angle in degrees' #remove the quotation marks before running the script
 print(scale_atom, scale_atom_y,step_height)
@@ -49,7 +52,10 @@ print(scale_atom, scale_atom_y,step_height)
 '''load atomic grid'''
 atomic_grid_xy = pickle.load( open( "atomic_grid_file.p", "rb" ) )   #loads atomic grid as data frames
 
+### END OF EDITABLE PARAMETERS ###
+
 #%%
+### START OF SCRIPT ###
 '''to remove first or last rows if needed (in case there are deffects on the edges of the STM image )'''
 unique_y=np.unique(data[:,1])
 out= [np.append(unique_y[:20],unique_y[-1:]) ]  #values to remove, separated by comas, or section of unique
@@ -1501,7 +1507,8 @@ ax39.plot(range(0,21),y0, linestyle="--",marker="o",color='green',markersize=2)
 
 
 boltzman=1.38064852e-23 
-temp= 'temperature at which the STM images were taken [K]' #remove quotation marks before running the script
+### EDIT THIS PARAMETER ###
+temp= 'temperature at which the STM images were taken [K]' #remove quotation marks (string) before running the script
 print(boltzman*temp)
 
 
