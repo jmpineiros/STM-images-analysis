@@ -34,7 +34,7 @@ Important Notes:
 
 ________________________________________
 
-Example:
+EXAMPLE:
 
 - Ag (100) crystal with A steps
 
@@ -52,13 +52,13 @@ border = 4.5e-14
 
 gradient_mark= 4.8e-12
 
-unit_cell_a= 4.0853e-10 #[A]
+unit_cell_a= 4.0853e-10 #[m]
 
-scale_atom = (np.sqrt(2)/2)*(4.0853e-10)  # [A]  for Ag  (100) in x
+scale_atom = (np.sqrt(2)/2)*(4.0853e-10)  # [m]  for Ag  (100) in x
 
-scale_atom_y=(np.sqrt(2)/2)*(4.0853e-10)  # [A]  for Ag  (100) in y
+scale_atom_y=(np.sqrt(2)/2)*(4.0853e-10)  # [m]  for Ag  (100) in y
 
-step_height= unit_cell_a/2 # [A]  for Ag (100) literature:2.4e-10
+step_height= unit_cell_a/2 # [m]  for Ag (100) literature:2.4e-10 m
 
 kink_angle= 45 # [degrees]
 
