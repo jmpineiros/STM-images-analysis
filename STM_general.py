@@ -1016,7 +1016,7 @@ for i in range(len(list_copy_masked_min_x_copy)):
     s_e_df.append(s_e_df_2)
 
 
-int_ln= np.round(np.linspace(0, len(s_e_df[0][0]), np.int(len(s_e_df[0][0])/26), endpoint=True)) # around 25 points interval
+int_ln= np.round(np.linspace(0, len(s_e_df[0][0]), int(len(s_e_df[0][0])/26), endpoint=True)) # around 25 points interval
 int_ln2=int_ln.astype(int) #I need to make integers indices, np.round gives float
 print((int_ln2))
 
@@ -1041,7 +1041,7 @@ for m in range(len(s_e_df)):
     se_df_mask1_list.append(mask_x_se_3)
     
     #second mask for outliers
-    int_ln= np.round(np.linspace(0, len(s_e_df[m][0]), np.int(len(s_e_df[m][0])/26), endpoint=True)) # 25 points interval
+    int_ln= np.round(np.linspace(0, len(s_e_df[m][0]), int(len(s_e_df[m][0])/26), endpoint=True)) # 25 points interval
     int_ln2=int_ln.astype(int)
     for j in range(len(int_ln2)-1):
         mean_in=np.mean(se_df_mask1_list[m][int_ln2[j]:int_ln2[j+1]])
@@ -1072,18 +1072,23 @@ for i in range(len(bins_mask2)-1):
 
 
 '''Fitting step edges to an atomic grid’'''
+
+#reset index on every df, I need to do this before the KDTree.query
+for m in range(len(s_e_df)):
+    sq_g_df[m] = sq_g_df[m].reset_index(drop=True) 
+    s_e_df[m] = s_e_df[m].reset_index(drop=True) 
+    
 index_k=[]
 distances_k=[]
 sq_x_k_t_list=[]
 for m in range(len(s_e_df)):
-    sq_g_df[m].index = range(len(sq_g_df[m])) #reset index according to length of dataframe, I need to do this !
-    #s_e_df[m].index = range(len(s_e_df[m]))
     if condition_side>0:
          for c in range(len(s_e_df[m])):
              distanceq,indexq = spatial.KDTree(sq_g_df[m]).query((mask_s_l[m][c],s_e_df[m][1][c]), k=1)    
              index_k.append(indexq)
              distances_k.append(distanceq)
          indices0_k=np.unique(index_k) 
+         #indices0_k=np.unique(indices0_k[:-1])  might be needed
          index_k=[]
          sq_g_x_k= sq_g_df[m][0][indices0_k] #using indices to find the numeric values of the atomic grid
          sq_g_y_k=sq_g_df[m][1][indices0_k]
@@ -1095,6 +1100,7 @@ for m in range(len(s_e_df)):
             index_k.append(indexq)
             distances_k.append(distanceq)
         indices0_k=np.unique(index_k) 
+        #indices0_k=np.unique(indices0_k[:-1])  might be needed
         index_k=[]
         sq_g_x_k= sq_g_df[m][0][indices0_k] #using indices to find the numeric values of the atomic grid
         sq_g_y_k=sq_g_df[m][1][indices0_k]
