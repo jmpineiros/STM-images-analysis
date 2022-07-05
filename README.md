@@ -28,8 +28,11 @@ Important Notes:
 2.	The script depends on the following python modules and packages. You need to install them and import some libraries:
 
        scipy - https://www.scipy.org/
+       
        numpy - https://numpy.org/
+       
        matplotlib - http://matplotlib.sourceforge.net/
+       
        pandas - https://pandas.pydata.org/
 
 3.	Plotting the atomic grid is a time-consuming process, which may cost minutes.
