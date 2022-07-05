@@ -23,9 +23,9 @@ Step3. Use the square atomic grid available on the repository or create a datafr
 Step4. Check step height percentage and if it is not around 25% redefine border and gradient mark
 ________________________________________
 Important Notes:
-1.	This script runs in the Python3 environment.
+1.	This script runs in the Python3 environment (Python 3.7).
 
-3.	The script depends on the following python modules and packages. You need to install them and import some libraries:
+2.	The script depends on the following python modules and packages. You need to install them and import some libraries:
 
        scipy - https://www.scipy.org/
        numpy - https://numpy.org/
@@ -33,6 +33,9 @@ Important Notes:
        pandas - https://pandas.pydata.org/
 
 3.	Plotting the atomic grid is a time-consuming process, which may cost minutes.
+
+
+
 
 ________________________________________
 
