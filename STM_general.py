@@ -1377,63 +1377,13 @@ zeros_and_kinks=np.concatenate(kinks_v_0_l, axis=0)
 #(diffy/diffx)=1 = 1
 angle_Ag100=np.arctan(1)   
 
+kinks_pos_conc=np.concatenate(kinks_p_l,axis=0)
+kinks_neg_conc=-np.concatenate(kinks_n_l,axis=0)
+kinks_all_conc=np.concatenate((kinks_pos_conc,kinks_neg_conc),axis=0)
+kinks_pos_c=collections.Counter(kinks_pos_conc)
+kinks_neg_c=collections.Counter(kinks_neg_conc)
+kinks_total_c=collections.Counter(kinks_all_conc)
 
-
-#kinks sum
-list_kinks_p=[[]for i in range(len(kinks_v_l))]    
-list_kinks_n=[[] for i in range(len(kinks_v_l))]   
-
-
-#kinks_s_p_m=[]
-#kinks_s_n_m=[]
-kinks_sum_p=0
-kinks_sum_n=0
-
-for m in range(len(s_e_df)):
-    for j in range(len(kinks_v_l[m])):
-        try:
-            if kinks_v_l[m][j]>0 and (kinks_v_l[m][j+1]>0 or kinks_v_l[m][j+1]<0)  :  #diff==0 has been excluded previously
-                kinks_sum_p+=kinks_v_l[m][j]
-                #print('j ', j, 'kinkspos ',kinks_sum_p)
-                #kinks_s_n_m.append(kinks_sum_n)
-                list_kinks_n[m].append(kinks_sum_n)
-                kinks_sum_n=0
-            
-            if kinks_v_l[m][j]<0 and (kinks_v_l[m][j+1]<0 or kinks_v_l[m][j+1]>0) :
-                kinks_sum_n+=kinks_v_l[m][j]
-                #kinks_s_p_m.append(kinks_sum_p)
-                list_kinks_p[m].append(kinks_sum_p)
-                kinks_sum_p=0
-    
-        except IndexError:
-                break
-            
-for m in range(len(s_e_df)):  #I have to run this part twice to get the plot without the zeros
-    mask_kinks_p=np.where(list_kinks_p[m]==0)
-    mask_kinks_n=np.where(list_kinks_n[m]==0)
-    list_kinks_p[m]=np.delete(list_kinks_p[m],mask_kinks_p)
-    list_kinks_n[m]=np.delete(list_kinks_n[m],mask_kinks_n)
-   
-for m in range(len(s_e_df)):  
-    mask_kinks_p=np.where(list_kinks_p[m]==0)
-    mask_kinks_n=np.where(list_kinks_n[m]==0)
-    list_kinks_p[m]=np.delete(list_kinks_p[m],mask_kinks_p)
-    list_kinks_n[m]=np.delete(list_kinks_n[m],mask_kinks_n)
-
-print(len(dev_x_edges))
-
-all_kinks_p=np.concatenate(list_kinks_p, axis=0)
-all_kinks_n=np.concatenate(list_kinks_n, axis=0)
-print(np.count_nonzero(m_p_p))
-all_kinks_t=np.concatenate((all_kinks_p,-all_kinks_n),axis=0)
-
-kinks_p_c=collections.Counter(all_kinks_p)  #behaves like a dictionary
-kinks_n_c=collections.Counter(all_kinks_n)
-kinks_t_c=collections.Counter(all_kinks_t)
-#all_kinks_n.count(-1)
-
-#m_p_w_p=m_p[]
-#m_p_w_n=#
 bins_k=np.array([0-0.5,1-0.5,2-0.5,3-0.5,4-0.5,5-0.5,6-0.5,7-0.5,8-0.5])
 #unique_k_n, counts_k_n = np.unique(all_kinks_n, return_counts=True)
 
@@ -1444,9 +1394,9 @@ ax28.set_ylabel("Occurrence")
 ax28.set_xticks(np.arange(0, 8, step=1))
 #ax28.set_title("Kinks [atomic units]")
 #ax28.set_xlim(0,np.max(bins_k))
-#ax28.hist(all_kinks_p, bins_k,density=False, facecolor='red', alpha=0.5, weights=np.ones(len(all_kinks_p)) / len(all_kinks_p))
-#ax28.hist(-all_kinks_n, bins_k,density=False, facecolor='blue', alpha=0.5, weights=np.ones(len(all_kinks_n)) / len(all_kinks_n))
-ax28.hist(all_kinks_t, bins_k,density=False, facecolor='purple', alpha=0.5, weights=np.ones(len(all_kinks_t)) / len(all_kinks_t))
+#ax28.hist(kinks_pos_conc, bins_k,density=False, facecolor='red', alpha=0.5, weights=np.ones(len(kinks_pos_conc)) / len(kinks_pos_conc))
+#ax28.hist(kinks_neg_conc, bins_k,density=False, facecolor='blue', alpha=0.5, weights=np.ones(len(kinks_neg_conc)) / len(kinks_neg_conc))
+ax28.hist(kinks_all_conc, bins_k,density=False, facecolor='purple', alpha=0.5, weights=np.ones(len(kinks_all_conc)) / len(kinks_all_conc))
 #ax28.legend(loc='upper right', fontsize= 'medium') 
 plt.gca().yaxis.set_major_formatter(PercentFormatter(1))
 plt.show()
