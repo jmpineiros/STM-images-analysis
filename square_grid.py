@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Nov 20 11:03:52 2018
+
+@author: pineirosjm
+"""
+
 import numpy as np
 from matplotlib import pyplot as plt
 from math import sqrt as sqrt
