@@ -52,7 +52,7 @@ The raw data and the atomic grid are included in the repository. This image is n
 
 raw_data_file: Ag_20161110_m11.txt
 
-atomic_grid_file: square_grid.p
+atomic_grid_file: square_grid.py
 
 - Parameters
 
@@ -80,4 +80,4 @@ Email: ysikpr@gmail.com
 
        l.juurlink@chem.leidenuniv.nl
        
-Date of last version: 2022/07/05
+Date of last version: 2025/01/12
